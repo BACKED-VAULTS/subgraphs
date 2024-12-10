@@ -56,6 +56,7 @@ abi_versions = {
     "timelock": ["1"],
     "vault": ["1"],
     "vault_token": ["1"],
+    "bondToken": ["1"],
 }
 
 

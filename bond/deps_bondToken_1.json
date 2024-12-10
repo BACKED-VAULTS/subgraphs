@@ -1,0 +1,20 @@
+{
+  "BaseTransfer": [
+    "BaseTransferEvent"
+  ],
+  "Deposit": [
+    "DepositEvent",
+    "DepositSLPEvent"
+  ],
+  "Withdraw": [
+    "RequestToWithdrawEvent",
+    "CancelWithdrawRequest"
+  ],
+  "User": [
+    "DepositEvent",
+    "DepositSLPEvent",
+    "RequestToWithdrawEvent",
+    "CancelWithdrawRequest",
+    "BaseTransferEvent"
+  ]
+}
