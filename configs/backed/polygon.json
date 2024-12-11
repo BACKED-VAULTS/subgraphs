@@ -9,6 +9,6 @@
 		}
 	],
 	"deploy_urls": {
-		"vaults": "polygon_bond"
+		"backed": "polygon_backed"
 	}
 }
