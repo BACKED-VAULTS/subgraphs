@@ -1,29 +1,28 @@
 import {ethereum} from "@graphprotocol/graph-ts"
 import {BondVersion} from "../../../common/BaseHandler";
 import {getCurrentRebaseIndex} from "../../utils";
-import {Deposit} from "../../../generated/schema";
+import {Withdraw} from "../../../generated/schema";
 import {handleUser} from "../common/handleUser";
 
 
-export class DepositEventHandler<T> {
+export class RequestToWithdrawHandler<T> {
     handle(_event: ethereum.Event, version: BondVersion): void {
-      // @ts-ignore
+        // @ts-ignore
         const event = changetype<T>(_event)
         const currentRebaseIndex = getCurrentRebaseIndex(event.address);
-        const entityId = event.transaction.hash.concatI32(event.logIndex.toI32());
-        const entity = new Deposit(entityId);
+        const entity = new Withdraw(event.params.requestId.toString());
 
         entity.user = event.params.user;
-        entity.sender = event.params.sender;
         entity.amount = event.params.amount;
+        entity.vaultTokenAmount = event.params.vaultTokenAmount;
         entity.continuousRebaseIndexDeltaPerSecond = event.params.continuousRebaseIndexDeltaPerSecond;
         entity.rebaseIndex = currentRebaseIndex;
-        entity.type = "COLLATERAL";
+        entity.status = "SUBMITTED";
         entity.blockNumber = event.block.number;
         entity.blockTimestamp = event.block.timestamp;
         entity.transactionHash = event.transaction.hash;
 
-        handleUser(event.params.user, event.params.amount.div(currentRebaseIndex), "ADD", currentRebaseIndex);
+        handleUser(event.params.user, event.params.amount.div(currentRebaseIndex), "SUB", currentRebaseIndex);
 
         entity.save();
     }

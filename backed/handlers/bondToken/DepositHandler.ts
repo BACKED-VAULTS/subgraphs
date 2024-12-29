@@ -5,20 +5,19 @@ import {Deposit} from "../../../generated/schema";
 import {handleUser} from "../common/handleUser";
 
 
-export class DepositSLPEventHandler<T> {
+export class DepositHandler<T> {
     handle(_event: ethereum.Event, version: BondVersion): void {
         // @ts-ignore
-        const event = changetype<T>(_event)
+        const event = changetype<T>(_event);
         const currentRebaseIndex = getCurrentRebaseIndex(event.address);
-        const entityId = event.transaction.hash.concatI32(event.logIndex.toI32());
-        const entity = new Deposit(entityId);
+        const entity = new Deposit(event.transaction.hash.toHex() + "-" + event.logIndex.toString());
 
         entity.user = event.params.user;
         entity.sender = event.params.sender;
         entity.amount = event.params.amount;
         entity.continuousRebaseIndexDeltaPerSecond = event.params.continuousRebaseIndexDeltaPerSecond;
         entity.rebaseIndex = currentRebaseIndex;
-        entity.type = "SLP";
+        entity.type = "COLLATERAL";
         entity.blockNumber = event.block.number;
         entity.blockTimestamp = event.block.timestamp;
         entity.transactionHash = event.transaction.hash;

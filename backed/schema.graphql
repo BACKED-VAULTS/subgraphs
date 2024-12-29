@@ -1,5 +1,5 @@
 type Deposit @entity(immutable: true) {
-  id: Bytes!
+  id: String!
   user: Bytes! # address
   sender: Bytes! # address
   amount: BigInt! # uint256
@@ -25,7 +25,7 @@ type Withdraw @entity(immutable: true) {
 }
 
 type BaseTransfer @entity(immutable: true) {
-  id: Bytes!
+  id: String!
   from: Bytes! # address
   to: Bytes! # address
   baseAmount: BigInt! # uint256

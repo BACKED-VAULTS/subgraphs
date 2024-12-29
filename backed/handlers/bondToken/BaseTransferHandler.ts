@@ -5,12 +5,12 @@ import {BaseTransfer} from "../../../generated/schema";
 import {handleUser} from "../common/handleUser";
 
 
-export class BaseTransferEventHandler<T> {
+export class BaseTransferHandler<T> {
     handle(_event: ethereum.Event, version: BondVersion): void {
         // @ts-ignore
         const event = changetype<T>(_event)
         const currentRebaseIndex = getCurrentRebaseIndex(event.address);
-        const entity = new BaseTransfer(event.transaction.hash.concatI32(event.logIndex.toI32()));
+        const entity = new BaseTransfer(event.transaction.hash.toHex() + "-" + event.logIndex.toString());
 
         entity.from = event.params.from;
         entity.to = event.params.to;
