@@ -1,0 +1,14 @@
+{
+	"network": "matic",
+	"contracts": [
+		{
+			"address": "0x2505D01197969CA097877b76d8EC603F7FF32688",
+			"abi": "bondToken",
+			"version": "1",
+			"startBlock": "64193529"
+		}
+	],
+	"deploy_urls": {
+		"backed": "polygon_backed"
+	}
+}
