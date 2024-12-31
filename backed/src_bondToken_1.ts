@@ -2,7 +2,7 @@ import {
     BaseTransfer,
     CancelWithdrawRequest,
     Deposit,
-    DepositSLP ,
+    DepositSLP,
     RequestToWithdraw,
 } from "../generated/bondToken_1/bondToken_1";
 import {BondVersion} from "../common/BaseHandler";

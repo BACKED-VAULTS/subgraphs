@@ -35,7 +35,7 @@ type BaseTransfer @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type User @entity(immutable: true) {
+type User @entity {
   id: Bytes! # address
   baseAmountBalance: BigInt! # uint256
   avgRebaseIndex: BigInt! # uint256
