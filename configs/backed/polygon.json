@@ -2,10 +2,10 @@
 	"network": "matic",
 	"contracts": [
 		{
-			"address": "0x2505D01197969CA097877b76d8EC603F7FF32688",
+			"address": "0x657Fe4bBcb558F7c547499Ea0431C71b71FF2BC9",
 			"abi": "bondToken",
 			"version": "1",
-			"startBlock": "64193529"
+			"startBlock": "66333696"
 		}
 	],
 	"deploy_urls": {
